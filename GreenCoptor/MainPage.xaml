@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Background="black"
+             Title="MauiCoptor"
+             x:Class="GreenCoptor.MainPage"
+             xmlns:greenCoptor="clr-namespace:GreenCoptor;assembly=GreenCoptor">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>           
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Margin="20,0,0,0" Grid.Row="0" 
+               Grid.Column="0" 
+               Text="{Binding Source={x:Reference greenCoptor}, Path=Drawable.Score, StringFormat='SCORE : {0}'}"
+               VerticalOptions ="Start" 
+               HorizontalTextAlignment="Start"
+               FontSize="Large" 
+               TextColor="White" />
+        
+        <Label Margin="0,0,20,0"
+            Grid.Row="0" 
+               Grid.Column="1" 
+               Text="{Binding Source={x:Reference greenCoptor}, Path=Drawable.Level, StringFormat='LEVEL : {0}'}"
+               VerticalOptions ="Start"
+               HorizontalTextAlignment="End"
+               FontSize="Large" 
+               TextColor="White" />
+        <greenCoptor:GreenCoptorGraphicsView Grid.Row="1" Grid.ColumnSpan="3" x:Name="greenCoptor"/>
+        <Button Text="{Binding Source={x:Reference greenCoptor}, Path=Drawable.ButtonText}"
+				Grid.Row="2"
+				Grid.Column="0"
+                Grid.ColumnSpan="3"
+				Background="orange"
+				VerticalOptions="End"
+                Command="{Binding ., Source={x:Static greenCoptor:GreenCoptorGraphicsView.Fire}}"/>
+    </Grid>
+
+</ContentPage>
